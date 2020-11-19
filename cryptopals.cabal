@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 8a26e3a1c377efa6b72fd4b883fbb16d7531c34d4b64ca3f40d9750b165128fe
+-- hash: fb2379eb9af9d1a64cf22c4ecb922b0eef1aa54892064b398302d8b0d70fcdcc
 
 name:           cryptopals
 version:        0.1.0.0
@@ -34,6 +34,10 @@ library
       src
   build-depends:
       base >=4.7 && <5
+    , base16-bytestring
+    , base64-bytestring
+    , bytestring
+    , text
   default-language: Haskell2010
 
 executable cryptopals-exe
@@ -45,7 +49,11 @@ executable cryptopals-exe
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base >=4.7 && <5
+    , base16-bytestring
+    , base64-bytestring
+    , bytestring
     , cryptopals
+    , text
   default-language: Haskell2010
 
 test-suite spec
@@ -58,7 +66,11 @@ test-suite spec
       test
   build-depends:
       base >=4.7 && <5
+    , base16-bytestring
+    , base64-bytestring
+    , bytestring
     , cryptopals
     , hspec ==2.*
+    , text
   default-language: Haskell2010
   build-tool-depends: hspec-discover:hspec-discover == 2.*

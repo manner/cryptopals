@@ -1,4 +1,8 @@
 module Challenge1.ConvertHexToBase64 where
 
-double :: Int -> Int 
-double x = 2 * x
+import Data.ByteString
+import qualified Data.ByteString.Base64 as Base64
+import qualified Data.ByteString.Base16 as Hex
+
+hexToBase :: ByteString -> ByteString
+hexToBase = Base64.encode . fst. Hex.decode

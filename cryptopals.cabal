@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: e149ce9f06e47f6432d22a902604ac993ed3481bc073c35b4282157e7a583b63
+-- hash: 8a26e3a1c377efa6b72fd4b883fbb16d7531c34d4b64ca3f40d9750b165128fe
 
 name:           cryptopals
 version:        0.1.0.0
@@ -27,7 +27,7 @@ source-repository head
 
 library
   exposed-modules:
-      Lib
+      Challenge1.ConvertHexToBase64
   other-modules:
       Paths_cryptopals
   hs-source-dirs:
@@ -48,15 +48,17 @@ executable cryptopals-exe
     , cryptopals
   default-language: Haskell2010
 
-test-suite cryptopals-test
+test-suite spec
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
+      Challenge1.ConvertHexToBase64Spec
       Paths_cryptopals
   hs-source-dirs:
       test
-  ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base >=4.7 && <5
     , cryptopals
+    , hspec ==2.*
   default-language: Haskell2010
+  build-tool-depends: hspec-discover:hspec-discover == 2.*

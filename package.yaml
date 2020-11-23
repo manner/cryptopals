@@ -25,6 +25,8 @@ dependencies:
   - base64-bytestring
   - base16-bytestring
   - text
+  - utf8-string
+  - containers
 
 library:
   source-dirs: src

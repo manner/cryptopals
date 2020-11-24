@@ -1,38 +1,41 @@
 {-# LANGUAGE OverloadedStrings #-}
 module Challenge3.SingleByteXORCipher where
 
-import Data.ByteString.Lazy
-import Data.ByteString.Lazy.Char8 as C8
+import qualified Data.ByteString.Lazy as BL
+import qualified Data.ByteString.Lazy.Char8 as C8
+import qualified Data.Map as Map 
 import Data.Word
-import Data.Map
-import Data.Char
+import Data.Char (toUpper)
 import Data.Bits (xor)
 import Challenge1.ConvertHexToBase64 (hexToByte, byteToHex)
 
 hexAlpha :: [Word8] 
-hexAlpha = Prelude.map (toEnum . fromEnum) ['a'..'z']
+hexAlpha = map charToWord ['0'..'Z']
 
-decryptSingleXOR :: ByteString -> [ByteString]
-decryptSingleXOR c = Prelude.map xorChiffre hexAlpha 
+decryptSingleXOR :: BL.ByteString -> [(Char, BL.ByteString)]
+decryptSingleXOR c = map xorChiffre hexAlpha
     where chiffre = hexToByte c
-          xorChiffre key = Data.ByteString.Lazy.map (xor key) chiffre
+          xorChiffre key = (toEnum $ fromEnum key, BL.map (xor key) chiffre)
           
-scores = Data.Map.fromList scoreTuples
-    where scoreTuples = Prelude.zip highestFrequencyLetters [1..]
-          highestFrequencyLetters = Prelude.reverse "etaoinshrdlcumwfgypbvkjxqz" --"ETAOINSHRDLU" 
+scores = Map.fromList scoreTuples
+    where scoreTuples = zip highestFrequencyLetters [12,12,9,8,8,7,7,6,6,6,4,3,4]
+          highestFrequencyLetters = " ETAOINSHRDLU" 
 
-lookupScore :: Integer -> Char -> Integer
-lookupScore current k = case Data.Map.lookup cleanKey scores of
+lookupScore :: Int -> Char -> Int
+lookupScore current key = case Map.lookup cleanKey scores of
         Nothing -> current
         Just value -> current + value
-    where cleanKey = Data.Char.toLower k
+    where cleanKey = toUpper key
 
-calcScore :: ByteString -> Integer
-calcScore text = Prelude.foldl lookupScore 0 (C8.unpack text)
+calcScore :: BL.ByteString -> Int
+calcScore text = foldl lookupScore 0 (C8.unpack text)
 
 decrypt text = allPossibilites !! max
     where allPossibilites = decryptSingleXOR text
-          max = maxIndex $ Prelude.map calcScore allPossibilites
--- decryptSingleXOR $ byteToHex "1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736"
+          max = maxIndex $ map (calcScore . snd) allPossibilites
 
-maxIndex xs = Prelude.head $ Prelude.filter ((== Prelude.maximum xs) . (xs !!)) [0..]
+maxIndex :: Ord a => [a] -> Int
+maxIndex xs = head $ filter ((== maximum xs) . (xs !!)) [0..]
+
+charToWord :: Char -> Word8
+charToWord = toEnum . fromEnum

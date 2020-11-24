@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 496ce74a9c5fd0b09f7d64d156cb160b9026b7c4870a3b8c62fe517cd68aefef
+-- hash: 6bcb4f52eba159f98ad409d695b31bb072fdc19884b7a701705aeb0a4e9fbaef
 
 name:           cryptopals
 version:        0.1.0.0
@@ -31,6 +31,7 @@ library
       Challenge2.FixedXOR
       Challenge3.SingleByteXORCipher
       Challenge4.DetectSingleCharXOR
+      Challenge5.RepeatingKeyXOR
   other-modules:
       Paths_cryptopals
   hs-source-dirs:
@@ -70,6 +71,7 @@ test-suite spec
       Challenge1.ConvertHexToBase64Spec
       Challenge2.FixedXORSpec
       Challenge3.SingleByteXORCipherSpec
+      Challenge5.RepeatingKeyXORSpec
       Paths_cryptopals
   hs-source-dirs:
       test

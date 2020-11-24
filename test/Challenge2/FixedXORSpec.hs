@@ -3,7 +3,6 @@
 module Challenge2.FixedXORSpec (spec) where
 
 import Test.Hspec
-import Data.ByteString.Char8 (pack)
 import Challenge2.FixedXOR
 
 spec :: Spec

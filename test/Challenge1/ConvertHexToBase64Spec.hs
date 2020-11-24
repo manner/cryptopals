@@ -3,7 +3,6 @@
 module Challenge1.ConvertHexToBase64Spec (spec) where
 
 import Test.Hspec
-import Data.ByteString.Char8 (pack)
 import Challenge1.ConvertHexToBase64
 
 spec :: Spec

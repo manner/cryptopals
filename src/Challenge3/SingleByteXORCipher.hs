@@ -10,15 +10,15 @@ import Data.Bits (xor)
 import Challenge1.ConvertHexToBase64 (hexToByte, byteToHex)
 
 hexAlpha :: [Word8] 
-hexAlpha = map charToWord ['0'..'Z']
+hexAlpha = map charToWord [' '..'~']
 
 decryptSingleXOR :: BL.ByteString -> [(Char, BL.ByteString)]
 decryptSingleXOR chiffre = map xorChiffre hexAlpha
     where xorChiffre key = (toEnum $ fromEnum key, BL.map (xor key) chiffre)
           
 scores = Map.fromList scoreTuples
-    where scoreTuples = zip highestFrequencyLetters [12,12,9,8,8,7,7,6,6,6,4,3,4]
-          highestFrequencyLetters = " ETAOINSHRDLU" 
+    where scoreTuples = zip highestFrequencyLetters [15,13,13,9,8,8,7,7,6,6,6,4,4,3]
+          highestFrequencyLetters = " ETAOINSHRDLC" 
 
 lookupScore :: Int -> Char -> Int
 lookupScore current key = case Map.lookup cleanKey scores of

@@ -7,6 +7,9 @@ import qualified Data.ByteString.Base16.Lazy as Hex
 hexToBase :: ByteString -> ByteString
 hexToBase = Base64.encode . hexToByte
 
+base64ToBytes :: ByteString -> ByteString
+base64ToBytes = Base64.decodeLenient 
+
 hexToByte :: ByteString -> ByteString
 hexToByte = fst . Hex.decode
 

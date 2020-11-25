@@ -13,9 +13,8 @@ hexAlpha :: [Word8]
 hexAlpha = map charToWord ['0'..'Z']
 
 decryptSingleXOR :: BL.ByteString -> [(Char, BL.ByteString)]
-decryptSingleXOR c = map xorChiffre hexAlpha
-    where chiffre = hexToByte c
-          xorChiffre key = (toEnum $ fromEnum key, BL.map (xor key) chiffre)
+decryptSingleXOR chiffre = map xorChiffre hexAlpha
+    where xorChiffre key = (toEnum $ fromEnum key, BL.map (xor key) chiffre)
           
 scores = Map.fromList scoreTuples
     where scoreTuples = zip highestFrequencyLetters [12,12,9,8,8,7,7,6,6,6,4,3,4]
@@ -30,6 +29,7 @@ lookupScore current key = case Map.lookup cleanKey scores of
 calcScore :: BL.ByteString -> Int
 calcScore text = foldl lookupScore 0 (C8.unpack text)
 
+decrypt :: BL.ByteString -> (Char, BL.ByteString)
 decrypt text = allPossibilites !! max
     where allPossibilites = decryptSingleXOR text
           max = maxIndex $ map (calcScore . snd) allPossibilites

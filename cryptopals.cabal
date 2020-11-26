@@ -8,12 +8,11 @@ cabal-version: 1.12
 
 name:           cryptopals
 version:        0.1.0.0
-description:    Please see the README on GitHub at <https://github.com/githubuser/cryptopals#readme>
-homepage:       https://github.com/githubuser/cryptopals#readme
-bug-reports:    https://github.com/githubuser/cryptopals/issues
-author:         Author name here
-maintainer:     example@example.com
-copyright:      2020 Author name here
+description:    Please see the README on GitHub at <https://github.com/mannner/cryptopals#readme>
+homepage:       https://github.com/manner/cryptopals#readme
+author:         Moritz Manner 
+maintainer:     moritz.manner@gmail.com
+copyright:      2020 Moritz Manner
 license:        BSD3
 license-file:   LICENSE
 build-type:     Simple

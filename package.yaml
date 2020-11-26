@@ -1,10 +1,9 @@
 name: cryptopals
 version: 0.1.0.0
-github: 'githubuser/cryptopals'
+github: 'manner/cryptopals'
 license: BSD3
-author: 'Author name here'
-maintainer: 'example@example.com'
-copyright: '2020 Author name here'
+author: 'Moritz Manner'
+copyright: '2020 Moritz Manner'
 
 extra-source-files:
   - README.md
